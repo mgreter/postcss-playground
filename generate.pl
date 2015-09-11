@@ -152,7 +152,7 @@ sub random_block
 		("  " x ($n + 1)) . $_ . "\n";
 	} random_property($props));
 
-	random_block($nesting, $n + 1) if ($n < $nesting);
+	$result .= random_block($nesting, $n + 1) if ($n < $nesting);
 
 	$result .= ("  " x $n) . "}\n";
 
@@ -162,10 +162,10 @@ sub random_block
 
 my $scss = '';
 
-for (my $i = 0; $i < 10000; $i ++)
+for (my $i = 0; $i < 3000; $i ++)
 {
-	my $nesting = int(rand(25)) + 1;
-	$scss .= random_block($nesting);
+	my $nesting = int(rand(5)) + 1;
+	$scss .= random_block($nesting, 0);
 }
 
 use File::Slurp;
@@ -175,11 +175,29 @@ write_file('test/nested.scss', $scss);
 system 'gulp sass';
 system 'gulp postcss';
 
-
-my $test2 = read_file('test2/nested.scss');
-my $test3 = read_file('test3/nested.css');
+my $test2 = read_file('sass/nested.css');
+my $test3 = read_file('postcss/nested.scss');
 
 $test2 =~ s/\s*/ /g;
 $test3 =~ s/\s*/ /g;
 
-print (($test2 eq $test3 ? "passed" : "mismatch"), "\n");
+print "initial test ", (($test2 eq $test3 ? "passed" : "mismatch"), "\n");
+
+my %results = ("postcss" => 0, "sass" => 0);
+
+my $runs = 10;
+
+foreach my $proc (keys %results) {
+  for (my $t = 0; $t < $runs; $t ++) {
+    my $out = `gulp $proc`; my $took = 0;
+    $took = $1 * 1000 if $out =~ m/after (\d+(:?\.\d+)?)\s+s/;
+    $took = $1 if $out =~ m/after (\d+)\s+ms/;
+	$results{$proc} += $took;
+    printf "$proc run %02d took %g ms\n", $t + 1, $took;
+  }
+}
+
+
+foreach my $proc (keys %results) {
+  printf "%s: %g ms\n", $proc, $results{$proc} / $runs;
+}

@@ -1,2 +1,6 @@
+sass/*.css
+sass/*.scss
+postcss/*.css
+postcss/*.scss
 bower_components
 node_modules
