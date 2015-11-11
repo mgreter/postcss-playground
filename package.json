@@ -1,6 +1,6 @@
 ﻿{
   "name": "postcsspg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "gulpfile.js",
   "directories": {
@@ -8,13 +8,9 @@
   },
   "dependencies": {
     "gulp": "^3.9.0",
-    "gulp-less": "^3.0.3",
-    "gulp-sass": "^2.0.4",
-    "gulp-postcss": "^6.0.0",
-    "postcss-custom-properties": "^5.0.0",
-    "postcss-css-variables": "^0.4.0",
-    "postcss-nested": "^1.0.0",
-    "postcss-import": "^7.0.0"
+    "gulp-sass": "^2.1.0",
+    "gulp-postcss": "^6.0.1",
+    "postcss-nested": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
