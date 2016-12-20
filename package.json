@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "postcsspg",
   "version": "1.0.1",
   "description": "",
@@ -8,8 +8,9 @@
   },
   "dependencies": {
     "gulp": "^3.9.0",
-    "gulp-sass": "^2.1.0",
     "gulp-postcss": "^6.0.1",
+    "gulp-sass": "^3.0.0",
+    "postcss-extend": "^1.0.5",
     "postcss-nested": "^1.0.0"
   },
   "devDependencies": {},
