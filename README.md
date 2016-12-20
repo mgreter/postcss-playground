@@ -15,8 +15,8 @@ Results:
 ```
 sass-nested: 1.292s
 postcss-nested: 1.451s
-sass-extend: 0.0694s
-postcss-extend: 4.037s
+sass-extend: 0.0661s
+postcss-extend: 4.095s
 ```
 
 :warning: Postcss finishes in `390ms` if **all** plugins were **disabled**.
