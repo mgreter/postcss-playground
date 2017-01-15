@@ -9,8 +9,10 @@ use IPC::Run3;
 my %results = (
 	'sass-nested' => [0, 0],
 	'sass-extend' => [0, 0],
+	'sass-for-loop' => [0, 0],
 	'postcss-nested' => [0, 0],
 	'postcss-extend' => [0, 0],
+	'postcss-for-loop' => [0, 0],
 );
 
 
@@ -28,7 +30,6 @@ for (my $i = 0; $i < 10; $i++) {
 			$results{$task}->[1] ++;
 		} else {
 			die "error parsing result: $out\n";
-			
 		}
 
 	}

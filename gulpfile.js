@@ -3,6 +3,7 @@ var sass = require('gulp-sass');
 var post = require('gulp-postcss');
 var nested = require('postcss-nested');
 var extend = require('postcss-extend');
+var loopfor = require('postcss-for');
 // var importC = require('postcss-import')();
 // var variabs = require('postcss-css-variables')();
 
@@ -15,6 +16,18 @@ gulp.task('postcss-extend', function() {
 
 gulp.task('sass-extend', function() {
 	return gulp.src('test/extend.scss')
+		.pipe(sass({outputStyle: 'expanded'}))
+		.pipe(gulp.dest('sass'));
+})
+
+gulp.task('postcss-for-loop', function() {
+	return gulp.src('test/for-loop.scss')
+		.pipe(post([loopfor]))
+		.pipe(gulp.dest('postcss'));
+})
+
+gulp.task('sass-for-loop', function() {
+	return gulp.src('test/for-loop.scss')
 		.pipe(sass({outputStyle: 'expanded'}))
 		.pipe(gulp.dest('sass'));
 })
